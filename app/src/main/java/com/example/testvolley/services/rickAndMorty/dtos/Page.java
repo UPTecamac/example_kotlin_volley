@@ -1,7 +1,6 @@
 package com.example.testvolley.services.rickAndMorty.dtos;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
@@ -9,13 +8,13 @@ import org.json.JSONObject;
 
 import java.util.Objects;
 
-public class Personaje {
+public class Page {
 
     private Informacion info;
     private Resultado results;
     private JSONObject informacion;
 
-    public Personaje(@NotNull JSONObject jsonObject, Context context) throws JSONException {
+    public Page(@NotNull JSONObject jsonObject, Context context) throws JSONException {
         informacion = jsonObject.getJSONObject("info");
         //Toast.makeText(context, informacion.toString(), Toast.LENGTH_SHORT).show();
         this.info = new Informacion(Objects.requireNonNull(jsonObject.getJSONObject("info")));

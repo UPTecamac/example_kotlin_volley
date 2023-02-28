@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.testvolley.services.rickAndMorty.dtos.Personaje
+import com.example.testvolley.services.rickAndMorty.dtos.Page
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -33,8 +31,12 @@ class MainActivity : AppCompatActivity() {
                     //Toast.makeText(this, results.getString("prev"), Toast.LENGTH_LONG).show()
 
                     // --  Con DTO
-                    val person = Personaje (JSONObject(response),this)
-                    Toast.makeText(this, person.info.count.toString(), Toast.LENGTH_LONG).show()
+                    val page =
+                        Page(
+                            JSONObject(response),
+                            this
+                        )
+                    Toast.makeText(this, page.info.count.toString(), Toast.LENGTH_LONG).show()
                 },
                 {
                     Toast.makeText(this, "That didn't work!", Toast.LENGTH_LONG).show()
