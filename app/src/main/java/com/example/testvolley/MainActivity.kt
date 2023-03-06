@@ -25,18 +25,8 @@ class MainActivity : AppCompatActivity() {
             // Request a string response from the provided URL.
             val stringRequest = StringRequest(Request.Method.GET, url,
                 { response ->
-                    // -- Sin DTO
-                    //val resp = JSONObject(response)
-                    //val results = resp.getJSONObject("info")
-                    //Toast.makeText(this, results.getString("prev"), Toast.LENGTH_LONG).show()
-
-                    // --  Con DTO
-                    val page =
-                        Page(
-                            JSONObject(response),
-                            this
-                        )
-                    Toast.makeText(this, page.info.count.toString(), Toast.LENGTH_LONG).show()
+                    val page = Page(JSONObject(response))
+                    Toast.makeText(this, page.personajes[0].name, Toast.LENGTH_LONG).show()
                 },
                 {
                     Toast.makeText(this, "That didn't work!", Toast.LENGTH_LONG).show()
