@@ -7,7 +7,7 @@ class Page constructor(data : org.json.JSONObject) {
 
     lateinit var info : Informacion
     lateinit var results : org.json.JSONArray
-    lateinit var personajes : ArrayList<Personaje>
+    val personajes : MutableList<Personaje> = mutableListOf()
 
     init {
         info = Informacion(data.getJSONObject("info"))
@@ -16,12 +16,10 @@ class Page constructor(data : org.json.JSONObject) {
     }
 
     private fun init(){
-        personajes = ArrayList<Personaje>()
         val nResult = results.length()
         for (i in 0 until results.length()){
-            personajes.add(Personaje(results.getJSONObject(i)))
+            this.personajes.add(Personaje(results.getJSONObject(i)))
         }
-        this.personajes = personajes
     }
 
 

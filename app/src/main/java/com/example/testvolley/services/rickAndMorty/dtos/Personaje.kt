@@ -1,6 +1,7 @@
 package com.example.testvolley.services.rickAndMorty.dtos
 
 class Personaje constructor(data : org.json.JSONObject){
+    lateinit var id : String
     lateinit var name : String
     lateinit var status : String
     lateinit var species : String
@@ -17,6 +18,7 @@ class Personaje constructor(data : org.json.JSONObject){
     }
 
     private fun init(){
+        this.id = data.getString("id")
         this.name = data.getString("name")
         this.status = data.getString("status")
         this.species = data.getString("species")

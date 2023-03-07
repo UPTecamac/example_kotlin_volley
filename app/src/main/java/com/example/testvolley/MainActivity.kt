@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -16,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val btnOk = findViewById<Button>(R.id.buttonOk)
+        // -- llena rrecicler view
+        val recyclerViewPersonajes = findViewById<RecyclerView>(R.id.recyclerViewPersonajes)
 
         btnOk.setOnClickListener {
             // Instantiate the RequestQueue.
@@ -26,7 +30,11 @@ class MainActivity : AppCompatActivity() {
             val stringRequest = StringRequest(Request.Method.GET, url,
                 { response ->
                     val page = Page(JSONObject(response))
-                    Toast.makeText(this, page.personajes[0].name, Toast.LENGTH_LONG).show()
+                    // -- llena rrecicler view
+                    LinearLayoutManager(this).apply {
+                        recyclerViewPersonajes.layoutManager = this
+                        recyclerViewPersonajes.adapter = MyPersonajeRecyclerViewAdapter(page.personajes)
+                    }
                 },
                 {
                     Toast.makeText(this, "That didn't work!", Toast.LENGTH_LONG).show()
